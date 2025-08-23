@@ -1,0 +1,60 @@
+
+<html>
+    <head>
+    </head>
+    <style>
+        h1.a{
+            text-align: center;
+            color:black;
+        }
+        div.a{
+            text-align:center;
+            color:black;
+        }
+        div.b{
+            text-align:center;
+        }
+        .success {
+            color: green;
+            font-weight: bold;
+        }
+        .danger {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+    <body style="background-image:url('static/images/1img.jpg');
+    background-size:cover;
+    background-attachment:fixed;
+    ">
+        <h1 class="a";>FILL YOUR DETAILS HERE</h1>
+        <form action="/submit" method="post">
+            <br><br><br><br><br><br>
+            <h2 style="color:black; text-align: center;">Login page</h4>
+            <br><br>
+            <div class="a">
+            FIRST NAME:<input type="text" name="first"><br>
+            <br><br>
+            EMAIL : <input type="text" name="em"><br>
+            <br><br>
+            PASSWORD : <input type="password" name="p"><br>
+            <br><br>
+            <button type="success">SUBMIT</button>
+            </div>
+            <div style="text-align:center;">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <p class="{{ category }}">!!!!{{ message }}!!!</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+        </form>
+        <div class="b">
+        <form action="/create">
+            <button>CREATE NEW ACCOUNT</button>
+        </form>
+        </div>
+    </body>
+</html>

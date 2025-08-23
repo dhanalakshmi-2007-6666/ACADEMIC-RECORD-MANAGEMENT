@@ -1,0 +1,64 @@
+<html>
+<head>
+    <style>
+        div.a {
+            text-align: center;
+        }
+        .button {
+            background-color: blue;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            display: inline-block;
+            cursor: pointer;
+            margin: 4px 2px;
+            border: none;
+            border-radius: 8px;
+        }
+        .success {
+            color: green;
+            font-weight: bold;
+        }
+        .danger {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body style="background-image:url('{{ url_for('static', filename='images/1img.jpg') }}');
+             background-size:cover;
+             background-attachment:fixed;">
+    <div class="a">
+        <h1>CREATE YOUR ACCOUNT HERE...!!</h1>
+        <br><br>
+
+        <form action="/acc" method="post">
+            FIRST NAME *: <input type="text" name="fname" placeholder="Enter your first name"><br><br>
+            LAST NAME *: <input type="text" name="lname" placeholder="Enter your last name"><br><br>
+
+            GENDER:<br>
+            <input type="radio" name="gender" value="FEMALE">Female
+            <input type="radio" name="gender" value="MALE">Male
+            <input type="radio" name="gender" value="OTHER">Other
+            <br><br><br>
+
+            CONTACT NUMBER *: <input type="text" name="cnum" placeholder="Enter your contact number"><br><br>
+            EMAIL *: <input type="text" name="email" placeholder="Enter your email"><br><br>
+            SUBJECT HANDLING *: <input type="text" name="sub" placeholder="Enter your subject"><br><br>
+
+            PASSWORD *: <input type="password" name="pword" placeholder="Enter your password">
+            <p style="color:blue"><b>NOTE***</b> The password length must be at least 6 characters</p><br>
+
+            CONFIRM PASSWORD *: <input type="password" name="cword" placeholder="Re-enter your password"><br><br>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <p class="{{ category }}">!!!!{{ message }}!!!</p>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+            <button class="button" type="submit">SUBMIT</button>
+        </form>
+    </div>
+</body>
+</html>

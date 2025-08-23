@@ -1,0 +1,47 @@
+<html>
+    <head></head>
+    <style>
+        .button {
+            background-color: blue;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            display: inline-block;
+            cursor: pointer;
+            margin: 4px 2px;
+            border: none;
+            border-radius: 8px;
+        }
+    </style>
+   <body style="background-image:url('static/images/1img.jpg');
+    background-size:cover;
+    background-attachment:fixed;
+    ">
+    <div style="text-align:center">
+        <h1>!!!!HI WELCOME TO {{names}}!!!!</h1><br><br><br>
+        </div>
+        <div style="text-align:center; margin-top:50px;">
+    <a href="/addstudent">
+        <button class="button">ADD STUDENT</button>
+    </a>
+</div>
+<br><br><br>
+        <div style="text-align:center">
+            <a href="/view">
+                <button class="button">VIEW STUDENT RECORD</button>
+            </a>
+        </div>
+        <br><br><br>
+        <form action="/back">
+            <div style="text-align:center">
+            <button class="button">GO BACK</button>
+            <br><br><br>
+            </div>
+        </form>
+        <form action="/full">
+            <div style="text-align:center">
+                <button class="button">VIEW STUDENT RECORD FOR ENTIRE INSTITUTION</button>
+            </div>
+        </form>
+    </body>
+</html>

@@ -1,0 +1,54 @@
+<html>
+    <head>
+    </head>
+    <style>
+        div.a{
+            text-align:center;
+        }
+        .button {
+            background-color: green;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            display: inline-block;
+            cursor: pointer;
+            margin: 4px 2px;
+            border: none;
+            border-radius: 8px;
+        }
+        .success {
+            color: green;
+            font-weight: bold;
+        }
+        .danger {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+    <body style="background-image:url('{{ url_for('static', filename='images/1img.jpg') }}');
+             background-size:cover;
+             background-attachment:fixed;">
+        <div style="text-align:center; font-family: 'Times New Roman';">
+            <h1>FILL STUDENT DETAILS</h1><br>
+            <br><br>
+        </div>
+      <div class="a">
+        <form action="/addstudent" method="post">
+            Student Name *:<input type="text" name="stu"><br>
+            <br><br>
+            class&sec *: <input type="text" name="cls"><br>
+            <br><br>
+            marks *: <input type="text" name="marks"><br>
+            <br><br>
+             {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        {% for category, message in messages %}
+            <p class="{{ category }}">!!!! {{ message }} !!!</p>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+        <button class="button">submit</button>
+        </form>
+        </div>
+    </body>
+</html>

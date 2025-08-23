@@ -1,0 +1,34 @@
+<html>
+<head></head>
+<body style="background-image:url('{{ url_for('static', filename='images/1img.jpg') }}');
+             background-size:cover;
+             background-attachment:fixed;">>
+    <div style="text-align:center;">
+        <h1>STUDENT MARK RECORD</h1>
+        <table border="1" cellspacing="0" cellpadding="8" align="center">
+            <thead>
+                <tr>
+                    <th>S.NO</th>
+                    <th>STUDENT NAME</th>
+                    <th>CLASS</th>
+                    <th>SUBJECT</th>
+                    <th>MARK</th>
+                    <th>GRADE</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for res in student %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ res["studentname"] }}</td>
+                    <td>{{ res["classes"] }}</td>
+                    <td>{{ res["subject"] }}</td>
+                    <td>{{ res["marks"] }}</td>
+                    <td>{{ res["grade"] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
