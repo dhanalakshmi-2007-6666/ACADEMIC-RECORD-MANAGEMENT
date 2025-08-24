@@ -1,20 +1,12 @@
 from flask import Flask, render_template, request, flash, redirect, url_for, session
 import sqlite3
-
 app = Flask(__name__)
-app.secret_key = "123"  # Needed for session management
-
-
-# ---------- DB INIT ----------
+app.secret_key = "123"
 def init_db():
     con = sqlite3.connect("database.db")
     cur = con.cursor()
-
-    # Teacher table
     cur.execute('''CREATE TABLE IF NOT EXISTS teacher
                    (firstname TEXT, email TEXT UNIQUE, password TEXT, subhandling TEXT)''')
-
-    # Students table
     cur.execute('''CREATE TABLE IF NOT EXISTS students
                    (studentname TEXT,
                     classes TEXT,
@@ -24,21 +16,12 @@ def init_db():
 
     con.commit()
     con.close()
-
-
-# ---------- ROUTES ----------
-
 @app.route("/")
 def reg():
     return render_template("reg.html")
-
-
 @app.route("/create")
 def create():
     return render_template("newacc.html")
-
-
-# Teacher register
 @app.route("/acc", methods=['POST', 'GET'])
 def acc():
     if request.method == 'POST':
@@ -69,9 +52,6 @@ def acc():
         finally:
             return redirect(url_for("acc"))
     return render_template("newacc.html")
-
-
-# Teacher login
 @app.route("/submit", methods=['POST', 'GET'])
 def submit():
     if request.method == "POST":
@@ -84,11 +64,9 @@ def submit():
         cur.execute("SELECT * FROM teacher WHERE email=? AND password=?", (email, password))
         user = cur.fetchone()
         con.close()
-
         if user:
-            # save teacher's subject into session
-            session['subject'] = user[3]  # subhandling
-            session['teachername'] = user[0]  # firstname
+            session['subject'] = user[3]
+            session['teachername'] = user[0]
             return render_template("welcome.html", names=name)
         else:
             flash("Invalid Email or Password", "danger")
@@ -104,7 +82,7 @@ def addstudent():
             classs = request.form['cls']
             marks = request.form['marks']
 
-            subject = session.get('subject')  # teacher's subject
+            subject = session.get('subject') 
             if not subject:
                 flash("Please login first", "danger")
                 return redirect(url_for("reg"))
